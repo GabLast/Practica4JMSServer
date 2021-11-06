@@ -13,6 +13,10 @@ public class MessageServices {
     @Autowired
     MessageRepository  messageRepository;
 
+    public void insert(Message message){
+        messageRepository.save(message);
+    }
+
     public List<Message> findAll(){
         return messageRepository.findAll();
     }
