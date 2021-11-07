@@ -27,7 +27,7 @@ EXPOSE 61616 8080
 COPY --from=build /home/gradle/src/build/libs/*.jar app.jar
 
 #Comando que se ejecuta una vez es iniciada la aplicación.
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
 
 # Para subir al repositorio realizo el push
 # debo logearme primero

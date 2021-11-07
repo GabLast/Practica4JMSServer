@@ -1,18 +1,15 @@
 package edu.pucmm.eict.JMS;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import edu.pucmm.eict.Models.Message;
 import edu.pucmm.eict.Services.MessageServices;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jms.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Consumidor {
-    @Autowired
     private MessageServices messageServices;
     private Topic topic;
     private MessageConsumer consumer;
@@ -20,11 +17,15 @@ public class Consumidor {
     private ActiveMQConnectionFactory factory;
     private Connection connection;
 
+    public Consumidor(MessageServices messageServices) {
+        this.messageServices = messageServices;
+    }
+
     public void conectar() throws JMSException {
         //Creando el connection factory
         // indicando el host y puerto, en la trama el failover indica que reconecta de manera
         //automatica
-        factory = new ActiveMQConnectionFactory("admin", "admin", "failover:tcp://localhost:61616");
+        factory = new ActiveMQConnectionFactory("admin", "admin", "failover:tcp://" + messageServices.getUrl() + ":61616");
 
         //Crea un nuevo hilo cuando hacemos a conexión, que no se detiene cuando
         // aplicamos el metodo stop(), para eso tenemos que cerrar la JVM o
@@ -45,15 +46,17 @@ public class Consumidor {
         consumer.setMessageListener(message -> {
             try {
                 TextMessage msg = (TextMessage) message;
-                System.out.println("El mensaje de texto recibido: " + msg.getText()+ " - " +
-                        new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+//                System.out.println("El mensaje de texto recibido: " + msg.getText()+ " - " +
+//                        new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
 
                 //Transform json to POJO
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.registerModule(new JavaTimeModule());
+
                 Message aux = objectMapper.readValue(msg.getText(), Message.class);
-                System.out.println(aux.toString());
-            }catch(Exception ex){
+                Message toinsert = new Message(aux.getFechaGeneracion(), aux.getIdDispositivo(), aux.getTemperatura(), aux.getHumedad());
+                messageServices.insert(toinsert);
+            }catch(JMSException | JsonProcessingException ex){
 //                ex.printStackTrace();
                 System.out.println("ERROR: No se pudo recibir el mensaje");
             }
