@@ -1,6 +1,7 @@
 package edu.pucmm.eict.JMS;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import edu.pucmm.eict.Models.Message;
 import edu.pucmm.eict.Services.MessageServices;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -47,12 +48,14 @@ public class Consumidor {
                 System.out.println("El mensaje de texto recibido: " + msg.getText()+ " - " +
                         new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
 
-                //Transform msg to json
+                //Transform json to POJO
                 ObjectMapper objectMapper = new ObjectMapper();
-                Message mensajeRecibido = objectMapper.readValue(msg.getText(), Message.class);
-                System.out.println(mensajeRecibido.toString());
+                objectMapper.registerModule(new JavaTimeModule());
+                Message aux = objectMapper.readValue(msg.getText(), Message.class);
+                System.out.println(aux.toString());
             }catch(Exception ex){
-                ex.printStackTrace();
+//                ex.printStackTrace();
+                System.out.println("ERROR: No se pudo recibir el mensaje");
             }
         });
     }

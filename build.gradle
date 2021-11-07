@@ -23,6 +23,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.activemq/activemq-spring
     implementation 'org.apache.activemq:activemq-spring:5.15.1'
+//    implementation 'org.springframework.boot:spring-boot-starter-activemq'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310

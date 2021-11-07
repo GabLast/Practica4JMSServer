@@ -1,0 +1,49 @@
+#indica la version de Docker Compose utilizada
+version: '3.8'
+#Bloque de servicios, indica los contenedores a utilizar.
+services:
+  app-web:
+    build: .
+    ports: #puertos que estaran expuestos.
+      - "8080:8080"
+    networks: #red para conectar los equipos.
+      - red-jms
+    volumes:
+      - mi-volumen-compose:/tmp/
+    depends_on: #indica que primero debe subir los servicios indicados.
+      - servidor-jms
+
+  servidor-jms:
+    image: gabmarte/jmsclient
+    environment:
+      - mode=1
+    networks:
+      - red-jms
+    ports:
+      - 61616:61616
+
+  cliente-1:
+    image: gabmarte/jmsclient
+    environment:
+        - mode=2
+        - id=1
+    networks:
+        - red-jms
+    depends_on:
+      - app-web
+
+  cliente-2:
+    image: gabmarte/jmsclient
+    environment:
+      - mode=2
+      - id=2
+    networks:
+      - red-jms
+    depends_on:
+      - app-web
+
+networks: #bloque para las redes
+  red-jms:   #indicando la red definida
+
+volumes: #Bloque para definir los volumenes
+  mi-volumen-compose:
