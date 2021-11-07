@@ -16,7 +16,7 @@ services:
   servidor-jms:
     image: gabmarte/jmsclient
     environment:
-      - mode=1
+      - MODE=1
     networks:
       - red-jms
     ports:
@@ -25,18 +25,18 @@ services:
   cliente-1:
     image: gabmarte/jmsclient
     environment:
-        - mode=2
-        - id=1
+      - MODE=2
+      - ID=1
     networks:
-        - red-jms
+      - red-jms
     depends_on:
       - app-web
 
   cliente-2:
     image: gabmarte/jmsclient
     environment:
-      - mode=2
-      - id=2
+      - MODE=2
+      - ID=2
     networks:
       - red-jms
     depends_on:
