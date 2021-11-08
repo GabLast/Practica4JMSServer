@@ -122,7 +122,7 @@
 
             var data3 = new google.visualization.DataTable();
             data3.addColumn('number', 'X');
-            data3.addColumn('number', 'Temperature');
+            data3.addColumn('number', 'Temperature (Celcius)');
 
             <#assign count = 0>
             <#if dataDevice2??>
