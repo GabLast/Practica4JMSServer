@@ -142,7 +142,7 @@
             var options3 = {
                 backgroundColor: '#F5F5F5',
                 chart: {
-                    title: 'Temperature vs X, Device 1'
+                    title: 'Temperature vs X, Device 2'
                 },
                 // Adds titles to each axis.
                 hAxis: {title: 'X'},
@@ -179,7 +179,7 @@
             var options4 = {
                 backgroundColor: '#F5F5F5',
                 chart: {
-                    title: 'Temperature vs X, Device 1'
+                    title: 'Temperature vs X, Device 2'
                 },
                 // Adds titles to each axis.
                 hAxis: {title: 'X'},
