@@ -5,7 +5,7 @@ services:
   app-web:
     build: .
     ports: #puertos que estaran expuestos.
-      - "80:8080"
+      - "8080:8080"
     networks: #red para conectar los equipos.
       - red-jms
     volumes:
