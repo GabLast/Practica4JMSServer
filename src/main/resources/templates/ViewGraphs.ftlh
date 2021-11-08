@@ -13,8 +13,8 @@
             <div class="row">
                 <div class="container-fluid">
                     <div class="row">
-                        <h3 class="text-light">Device 1</h3>
-                        <div class="col-md-6">
+                        <h3 class="text-light text-center">Device 1</h3>
+                        <div class="col-md-5 offset-md-1">
                             <div id="chart1a">
                             </div>
                         </div>
@@ -26,8 +26,8 @@
                     <br>
 
                     <div class="row">
-                        <h3 class="text-light">Device 2</h3>
-                        <div class="col-md-6">
+                        <h3 class="text-light text-center">Device 2</h3>
+                        <div class="col-md-5 offset-md-1">
                             <div id="chart2a"></div>
                         </div>
                         <div class="col md-6">
@@ -105,18 +105,18 @@
             var options2 = {
                 backgroundColor: '#F5F5F5',
                 chart: {
-                    title: 'Temperature vs X, Device 1'
+                    title: 'Humidity vs X, Device 1'
                 },
                 // Adds titles to each axis.
                 hAxis: {title: 'X'},
-                vAxis: {title: 'Temperature (Celcius)'},
+                vAxis: {title: 'Humidity'},
                 width: 700,
                 height: 500
             };
 
             var chart2 = new google.charts.Line(document.getElementById('chart1b'));
 
-            chart2.draw(data1, google.charts.Line.convertOptions(options2));
+            chart2.draw(data2, google.charts.Line.convertOptions(options2));
 
             //    ======================================================================================
 
@@ -179,11 +179,11 @@
             var options4 = {
                 backgroundColor: '#F5F5F5',
                 chart: {
-                    title: 'Temperature vs X, Device 2'
+                    title: 'Humidity vs X, Device 2'
                 },
                 // Adds titles to each axis.
                 hAxis: {title: 'X'},
-                vAxis: {title: 'Temperature (Celcius)'},
+                vAxis: {title: 'Humidity'},
                 width: 700,
                 height: 500
             };
