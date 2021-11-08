@@ -27,6 +27,10 @@ public class MessageServices {
         return messageRepository.findAll();
     }
 
+    public Message findLastInsert() {
+        return findAll().get(findAll().size()-1);
+    }
+
 
     public String getUrl() {
         return url;

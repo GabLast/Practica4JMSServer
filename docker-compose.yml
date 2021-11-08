@@ -20,7 +20,7 @@ services:
     networks:
       - red-jms
     ports:
-      - 61616:61616
+      - "61616:61616"
 
   cliente-1:
     image: gabmarte/jmsclient

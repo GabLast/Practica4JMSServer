@@ -1,8 +1,3 @@
-# Archivo que representa la información para la creación de
-# una imagen para Docker, indicando todos los parametros necesarios.
-
-# Probando el concepto de Multi-stage.
-# Instalando Gradle para compilar al aplicación y luego lo necesario a una imagen completa.
 FROM gradle:7.2.0-jdk11 AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src

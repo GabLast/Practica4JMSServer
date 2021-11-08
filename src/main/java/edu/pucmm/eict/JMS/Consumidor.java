@@ -8,6 +8,8 @@ import edu.pucmm.eict.Services.MessageServices;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Consumidor {
     private MessageServices messageServices;
@@ -46,8 +48,8 @@ public class Consumidor {
         consumer.setMessageListener(message -> {
             try {
                 TextMessage msg = (TextMessage) message;
-//                System.out.println("El mensaje de texto recibido: " + msg.getText()+ " - " +
-//                        new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+                System.out.println("El mensaje de texto recibido: " + msg.getText()+ " - " +
+                        new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
 
                 //Transform json to POJO
                 ObjectMapper objectMapper = new ObjectMapper();

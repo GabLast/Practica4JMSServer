@@ -29,6 +29,16 @@ dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.3'
 
+    //Websocket stuff
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.webjars:jquery:3.5.1'
+    implementation 'org.springframework:spring-messaging:5.2.2.RELEASE'
+
+    //this breaks the other methods using the databind lib above. cant use
+//    implementation 'com.fasterxml.jackson.core:jackson-core:2.10.2'
+
+
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

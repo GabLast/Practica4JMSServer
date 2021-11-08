@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -31,6 +30,9 @@ public class Message {
         this.idDispositivo = idDispositivo;
         this.temperatura = temperatura;
         this.humedad = humedad;
+    }
+
+    public Message(long idMessage, LocalDateTime fechaGeneracion, long idDispositivo, float temperatura, float humedad) {
     }
 
     public long getIdMessage() {
